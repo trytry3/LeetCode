@@ -1,4 +1,10 @@
-// Given a collection of intervals, merge all overlapping intervals.
+/** Given a collection of intervals, merge all overlapping intervals.
+
+Example:
+Input: [[1,4],[4,5]]
+Output: [[1,5]]
+*/
+
 /**
  * Definition for an interval.
  * public class Interval {
@@ -8,6 +14,34 @@
  *     Interval(int s, int e) { start = s; end = e; }
  * }
  */
+
+// Method 1
+class Solution {
+    public List<Interval> merge(List<Interval> intervals) {
+        if (intervals == null || intervals.size() == 0)
+            return intervals;
+        List<Interval> res = new ArrayList<>();
+        // sort according to interval's start
+        intervals.sort((i1, i2) -> i1.start - i2.start);
+        int curStart = intervals.get(0).start;
+        int curEnd = intervals.get(0).end;
+        for (int i = 1; i < intervals.size(); i++) {
+            // overlap
+            if (intervals.get(i).start <= curEnd) {
+                curEnd = Math.max(curEnd, intervals.get(i).end);
+            } else{
+                res.add(new Interval(curStart, curEnd));
+                curStart = intervals.get(i).start;
+                curEnd = intervals.get(i).end;
+            }
+        }
+        res.add(new Interval(curStart, curEnd));  
+        return res;
+    }
+}
+
+
+// Method 2
 class Solution {
     public List<Interval> merge(List<Interval> intervals) {
         int n = intervals.size();
