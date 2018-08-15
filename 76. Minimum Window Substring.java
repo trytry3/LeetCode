@@ -10,6 +10,7 @@ If there is such window, you are guaranteed that there will always be only one u
 */
 
 // two pointers
+// template for LeetCode substring search problem
 class Solution {
 	public String minWindow(String str, String pat) {
         if (str.length() < pat.length())
