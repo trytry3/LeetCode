@@ -1,4 +1,4 @@
-/** Find the kth largest element in an unsorted array. 
+/* Find the kth largest element in an unsorted array. 
 Note that it is the kth largest element in the sorted order, not the kth distinct element.
 
 Example:
@@ -6,7 +6,7 @@ Input: [3,2,1,5,6,4] and k = 2
 Output: 5
 */
 
-// Method 1: heap
+// method 1: heap
 class Solution {
     public int findKthLargest(int[] nums, int k) {
         PriorityQueue<Integer> heap  = new PriorityQueue<>();
@@ -21,7 +21,7 @@ class Solution {
 }
 
 
-// Method 2: quick sort
+// method 2: quick sort
 class Solution {
     public int findKthLargest(int[] nums, int k) {
         int low = 0, high = nums.length -1;

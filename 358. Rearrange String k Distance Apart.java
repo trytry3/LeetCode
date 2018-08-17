@@ -1,4 +1,4 @@
-/** Given a non-empty string s and an integer k, rearrange the string such that the same characters are at least distance k from each other.
+/* Given a non-empty string s and an integer k, rearrange the string such that the same characters are at least distance k from each other.
 All input strings are given in lowercase letters. If it is not possible to rearrange the string, return an empty string "".
 
 Example 1:
@@ -10,7 +10,7 @@ s = "aaabc", k = 3
 Answer: ""
 */
 
-// choose most frequent char first, so that more gaps can be utilized by other chars
+// thinking: choose most frequent char first, so that more gaps can be utilized by other chars
 class Solution {
     public String rearrangeString(String str, int k) {
         StringBuilder rearranged = new StringBuilder();

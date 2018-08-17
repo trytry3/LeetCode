@@ -1,4 +1,4 @@
-/** Given a char array representing tasks CPU need to do. 
+/* Given a char array representing tasks CPU need to do. 
 It contains capital letters A to Z where different letters represent different tasks.
 Tasks could be done without original order. Each task could be done in one interval. 
 For each interval, CPU could finish one task or just be idle.
@@ -12,7 +12,7 @@ Output: 8
 Explanation: A -> B -> idle -> A -> B -> idle -> A -> B.
 */
 
-/** Thinking:
+/* thinking:
 the most frequent task should need more idles than any other tasks (more empty slots for other tasks to fill in), 
 so always arrange task with most frequency first.
 

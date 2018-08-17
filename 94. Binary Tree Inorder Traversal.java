@@ -1,3 +1,15 @@
+/* Given a binary tree, return the inorder traversal of its nodes' values.
+
+Example:
+Input: [1,null,2,3]
+   1
+    \
+     2
+    /
+   3
+Output: [1,3,2]
+*/
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -8,7 +20,7 @@
  * }
  */
 
-// Method 1: recursive
+// method 1: recursive
 class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<Integer>();
@@ -26,7 +38,7 @@ class Solution {
     }
 }
 
-// Method 2: iterative
+// method 2: iterative
 class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<Integer>();

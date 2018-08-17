@@ -1,4 +1,4 @@
-/** Given a collection of intervals, merge all overlapping intervals.
+/* Given a collection of intervals, merge all overlapping intervals.
 
 Example:
 Input: [[1,4],[4,5]]
@@ -15,7 +15,7 @@ Output: [[1,5]]
  * }
  */
 
-// Method 1
+// method 1
 class Solution {
     public List<Interval> merge(List<Interval> intervals) {
         if (intervals == null || intervals.size() == 0)
@@ -41,7 +41,7 @@ class Solution {
 }
 
 
-// Method 2
+// method 2
 class Solution {
     public List<Interval> merge(List<Interval> intervals) {
         int n = intervals.size();

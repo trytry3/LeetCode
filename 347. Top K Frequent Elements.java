@@ -1,9 +1,9 @@
-/** Given a non-empty array of integers, return the k most frequent elements.s
+/* Given a non-empty array of integers, return the k most frequent elements.s
 For example,
 Given [1,1,1,2,2,3] and k = 2, return [1,2]
 */
 
-// Method 1: bucket
+// method 1: bucket
 class Solution {
     public List<Integer> topKFrequent(int[] nums, int k) {
         Map<Integer, Integer> map = new HashMap<>();
@@ -33,7 +33,7 @@ class Solution {
     }
 }
 
-// Method 2: max heap
+// method 2: max heap
 class Solution {
     public List<Integer> topKFrequent(int[] nums, int k) {
         Map<Integer, Integer> map = new HashMap<>();
@@ -61,7 +61,7 @@ class Solution {
     }
 }
 
-// Method 3: TreeMap
+// method 3: TreeMap
 class Solution {
     public List<Integer> topKFrequent(int[] nums, int k) {
         Map<Integer, Integer> map = new HashMap<>();

@@ -1,4 +1,4 @@
-/** Clone an undirected graph. Each node in the graph contains a label and a list of its neighbors. */
+/* Clone an undirected graph. Each node in the graph contains a label and a list of its neighbors. */
 
 /**
  * Definition for undirected graph.
@@ -8,7 +8,9 @@
  *     UndirectedGraphNode(int x) { label = x; neighbors = new ArrayList<UndirectedGraphNode>(); }
  * };
  */
-public class Solution {
+
+// bfs
+class Solution {
     public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
         if (node == null)
             return node;

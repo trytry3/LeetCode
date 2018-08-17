@@ -1,4 +1,4 @@
-/** Given two integers n and k, return all possible combinations of k numbers out of 1 ... n.
+/* Given two integers n and k, return all possible combinations of k numbers out of 1 ... n.
 
 Example:
 Input: n = 4, k = 2
@@ -12,6 +12,7 @@ Output:
   [1,4],
 ]
 */
+
 class Solution {
     public List<List<Integer>> combine(int n, int k) {
         List<List<Integer>> res = new ArrayList<>();

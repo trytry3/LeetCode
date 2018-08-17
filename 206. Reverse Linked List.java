@@ -1,3 +1,10 @@
+/* Reverse a singly linked list.
+
+Example:
+Input: 1->2->3->4->5->NULL
+Output: 5->4->3->2->1->NULL
+*/
+
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -6,7 +13,8 @@
  *     ListNode(int x) { val = x; }
  * }
  */
-// Method 1: iteratively
+
+// method 1: iteratively
 class Solution {
     public ListNode reverseList(ListNode head) {
         ListNode prev = null;
@@ -21,7 +29,7 @@ class Solution {
     }
 }
 
-// Method 2: recursively
+// method 2: recursively
 class Solution {
     public ListNode reverseList(ListNode head) {
         return reverse(head, null);
