@@ -40,8 +40,8 @@ class Solution {
 // method 2: iterative
 class Solution {
     public List<Integer> preorderTraversal(TreeNode root) {
-        List<Integer> list = new ArrayList<Integer>();
-        Stack<TreeNode> stack = new Stack<TreeNode>();
+        List<Integer> list = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
         if (root == null) {
             return list;
         }
