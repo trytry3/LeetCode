@@ -26,7 +26,7 @@ class Solution {
         }
         for (int i = 0; i < nums.length; i++) {
             if (used[i] || i > 0 && nums[i] == nums[i-1] && !used[i-1]) 
-                // when used[i-1]==false and nums[i]==nums[i-1], it's in backtrack step, don't add the ith element again
+                // when used[i] false, used[i-1] false and nums[i]==nums[i-1], it's in backtrack step, don't add the ith element again
                 // because the duplicate (ith element) already added once in the non-backtrack step
                 continue;
             tempList.add(nums[i]);
