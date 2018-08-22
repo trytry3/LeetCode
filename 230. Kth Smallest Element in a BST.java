@@ -32,6 +32,26 @@ Output: 3
  * }
  */
 
+// method 1: binary search, dfs
+class Solution {
+    public int kthSmallest(TreeNode root, int k) {
+        int leftNodeCount = countNodes(root.left);
+        if (leftNodeCount + 1 == k)
+            return root.val;
+        else if (leftNodeCount + 1 > k)
+            return kthSmallest(root.left, k);
+        else // if (leftNodeCount + 1 < k )
+            return kthSmallest(root.right, k - (leftNodeCount+1));
+    }
+    
+    private int countNodes(TreeNode node) {
+        if (node == null)
+            return 0;
+        return 1 + countNodes(node.left) + countNodes(node.right);
+    }
+}
+
+
 // method 2: see iterative method of 94. Binary Tree Inorder Traversal.java
 class Solution {
     public int kthSmallest(TreeNode root, int k) {
