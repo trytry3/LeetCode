@@ -6,7 +6,22 @@ Output: 6
 Explanation: [4,-1,2,1] has the largest sum = 6.
 */
 
-// dynamic programming
+// method 1
+class Solution {
+    public int maxSubArray(int[] A) {
+        int minPreSum = 0;
+        int sum = 0;
+        int maxSubSum = Integer.MIN_VALUE;
+        for (int i = 0; i < A.length; i++) {
+            sum += A[i];
+            maxSubSum = Math.max(maxSubSum, sum - minPreSum);
+            minPreSum = Math.min(sum, minPreSum);
+        }
+        return maxSubSum;
+    }
+}
+
+// method 2: dynamic programming
 class Solution {
     public int maxSubArray(int[] A) {
         int n = A.length;
