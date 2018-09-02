@@ -31,7 +31,7 @@ class Solution extends SolBase {
             // ensure every number is equal prob 
             // e.g. idx 3 can only be produced by 3 + 0
             idx = col + (row - 1) * 7; 
-        } while (idx > 40);
+        } while (idx > 40); // if > 10 rejection, will be too slow 
         // (1,2, ...9, 0) + 1
         return idx % 10 + 1;
     }
