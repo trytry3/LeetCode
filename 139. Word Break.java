@@ -23,7 +23,7 @@ Output: false
 // dynamic programming
 class Solution {
     public boolean wordBreak(String s, List<String> wordDict) {
-        Set<String> wordSet = new HashSet<>(wordDict);
+        Set<String> wordDictSet = new HashSet<>(wordDict);
         int n = s.length();
         // f[i] stores whether the previous i words can word break
         boolean[] f = new boolean[n+1];
@@ -32,7 +32,7 @@ class Solution {
         // note: i is from 1 to n
         for (int i = 1; i <= n; i++) {
             for (int j = 0; j < i; j++) {
-                if (f[j] && wordSet.contains(s.substring(j, i))) {
+                if (f[j] && wordDictSet.contains(s.substring(j, i))) {
                     f[i] = true;
                     break;
                 }
