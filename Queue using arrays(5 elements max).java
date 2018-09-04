@@ -6,6 +6,7 @@ import java.util.*;
  but you are limited to using arrays that can store up to 5 elements max
  */
 
+// my solution to airbnb phone interview
 class Solution {
   public static void main(String[] args) throws Exception {
     Queue test = new Queue();
