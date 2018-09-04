@@ -38,14 +38,12 @@ class Solution {
 class Queue {
   private int indexEnq;
   private int indexDeq;
-  private int[] array;
   private ListNode head;
   private ListNode dummy;
   private ListNode cur;
 
   public Queue() {
-    array = new int[5];
-    head = new ListNode(array);
+    head = new ListNode(new int[5]);
     dummy = new ListNode(new int[5]);
     dummy.next = head;
     cur = head;
