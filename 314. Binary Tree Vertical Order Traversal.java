@@ -53,11 +53,11 @@ class Solution {
 			return new ArrayList<>();
 		}
 
-        // TreeMap preserves key's natural ordering
-        // key is col, value is the list of nodes in that col
+		// TreeMap preserves key's natural ordering
+		// key is col, value is the list of nodes in that col
 		Map<Integer, List<Integer>> map = new TreeMap<>();
 		Queue<TreeNode> nodes = new LinkedList<>();
-        // track each node's col
+		// track each node's col
 		Queue<Integer> cols = new LinkedList<>();
 
 		nodes.add(root);
