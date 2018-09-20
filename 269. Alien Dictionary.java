@@ -41,22 +41,22 @@ There may be multiple valid order of letters, return any one of them is fine.
 // topological sorting
 class Solution {
 	public String alienOrder(String[] words) {
-        // key is char, value is char's neighbors
+		// key is char, value is char's neighbors
 		Map<Character, Set<Character>> graph = new HashMap<Character, Set<Character>>();
-        // stores indegree of each char
+		// stores indegree of each char
 		Map<Character, Integer> indegree = new HashMap<Character, Integer>();
 		String result = "";
-        
+
 		if (words == null || words.length == 0)
 			return result;
-        
+
 		for (String s : words) {
 			for (char c : s.toCharArray()) {
 				indegree.put(c, 0);
 			}
 		}
-        
-        // build graph
+
+		// build graph
 		for (int i = 0; i < words.length - 1; i++) {
 			String cur = words[i];
 			String next = words[i + 1];
@@ -65,24 +65,24 @@ class Solution {
 				char c1 = cur.charAt(j);
 				char c2 = next.charAt(j);
 				if (c1 != c2) {
-                    if (!graph.containsKey(c1)) {
-                        graph.put(c1, new HashSet<>());
-                    }
-                    if (!graph.get(c1).contains(c2)) {
-                        graph.get(c1).add(c2);
-                        indegree.put(c2, indegree.get(c2) + 1);
-                    }
+					if (!graph.containsKey(c1)) {
+						graph.put(c1, new HashSet<>());
+					}
+					if (!graph.get(c1).contains(c2)) {
+						graph.get(c1).add(c2);
+						indegree.put(c2, indegree.get(c2) + 1);
+					}
 					break;
 				}
 			}
 		}
-        
+
 		Queue<Character> queue = new LinkedList<Character>();
 		for (char c : indegree.keySet()) {
 			if (indegree.get(c) == 0)
 				queue.add(c);
 		}
-        
+
 		while (!queue.isEmpty()) {
 			char c = queue.remove();
 			result += c;
@@ -94,8 +94,8 @@ class Solution {
 				}
 			}
 		}
-        
-        // if there is circle in the graph (i.e. invalid order), the sizes won't be equal
+
+		// if there is circle in the graph (i.e. invalid order), the sizes won't be equal
 		if (result.length() != indegree.size())
 			return "";
 		return result;
