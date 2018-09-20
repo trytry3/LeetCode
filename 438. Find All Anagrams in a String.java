@@ -35,9 +35,11 @@ class Solution {
                 if (map.get(e) == 0)
                     unMatchedCharCount--;
             }
-            end++;
             // trying to shrink interval
             while (unMatchedCharCount == 0) {
+                if (end - start + 1 == p.length()) {
+                    res.add(start);
+                }
                 char c = s.charAt(start);
                 if (map.containsKey(c)) {
                     map.put(c, map.get(c)+1);
@@ -45,11 +47,9 @@ class Solution {
                     if (map.get(c) > 0)
                         unMatchedCharCount++;
                 } 
-                if (end - start == p.length()) {
-                    res.add(start);
-                }
                 start++;
             }
+            end++;
         }
         return res;
     }
