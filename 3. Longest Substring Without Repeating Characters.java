@@ -8,7 +8,7 @@ Note that the answer must be a substring, "pwke" is a subsequence and not a subs
 */
 
 // two pointers
-// template for LeetCode substring search problem
+// method 1: template for LeetCode substring search problem
 class Solution {
     public int lengthOfLongestSubstring(String s) {
         Map<Character, Integer> map = new HashMap<>();
@@ -20,7 +20,7 @@ class Solution {
             // repeating character
             if (map.get(e) > 1) 
                 duplicateCharCount++;
-            end++;
+            
             // duplicate chars exist
             // remove duplicates from the window as soon as they appear
             while (duplicateCharCount > 0) {
@@ -30,9 +30,29 @@ class Solution {
                 map.put(c, map.get(c)-1);
                 start++;
             }
-            maxLen = Math.max(maxLen, end - start);
+            maxLen = Math.max(maxLen, end - start + 1);
+            end++;
         }
         return maxLen;
     }
     
+}
+
+// method 2: two pointers
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        // key is char in s, value is char's position
+        Map<Character, Integer> map = new HashMap<>();
+        int max = 0;
+        for (int right = 0, left = 0; right < s.length(); right++){
+            // If the character is already in the hashmap, 
+            // then move the left pointer to the right of the same character last found
+            if (map.containsKey(s.charAt(right))) {
+                left = Math.max(left, map.get(s.charAt(right)) + 1);
+            }
+            map.put(s.charAt(right), right);
+            max = Math.max(max, right - left + 1);
+        }
+        return max;
+    }
 }
