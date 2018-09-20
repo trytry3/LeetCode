@@ -37,6 +37,10 @@ class Solution {
             end++;
             // after finding all chars of `pat` in `str`, trying to shrink interval
             while (unMatchedCharCount == 0) {
+                if (end - start < minWindowLen) {
+                    minWindowLen = end - start;
+                    head = start;
+                }
                 char s = str.charAt(start);
                 if (map.containsKey(s)) {
                     map.put(s, map.get(s)+1);
@@ -44,10 +48,6 @@ class Solution {
                     if (map.get(s) > 0)
                         unMatchedCharCount++;
                 } 
-                if (end - start < minWindowLen) {
-                    minWindowLen = end - start;
-                    head = start;
-                }
                 start++;
             }
         }
