@@ -50,10 +50,10 @@ class Solution {
         ListNode prev = null;
         while (head != null) {
         	// store head's next before reversing
-            ListNode temp = head.next;
-            head.next = prev;
-            prev = head;
-            head = temp;        
+        	ListNode temp = head.next;
+        	head.next = prev;
+        	prev = head;
+        	head = temp;
         } 
         return prev;
     }
