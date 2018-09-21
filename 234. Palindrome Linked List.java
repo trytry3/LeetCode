@@ -27,15 +27,15 @@ class Solution {
 			fast = fast.next.next;
 			slow = slow.next;
 		}
-    	// odd nodes, let right half smaller;
-    	// because when even nodes, after reverse slow, right half is smaller 
-    	// since the middle is not break
+		// odd nodes, let right half smaller;
+		// because when even nodes, after reverse slow, right half is smaller 
+		// since the middle is not break
 		if (fast != null) { 
 			slow = slow.next;
 		}
 		ListNode right = reverse(slow);
 		ListNode left = head;
-    	// since right half is smaller, check right
+		// since right half is smaller, check right
 		while (right != null) {
 			if (left.val != right.val) {
 				return false;
