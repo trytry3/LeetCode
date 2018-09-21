@@ -30,11 +30,13 @@ class Solution {
             if (intervals.get(i).start <= curEnd) {
                 curEnd = Math.max(curEnd, intervals.get(i).end);
             } else {
+                // add the previous merged interval to res
                 res.add(new Interval(curStart, curEnd));
                 curStart = intervals.get(i).start;
                 curEnd = intervals.get(i).end;
             }
         }
+        // add the last merged interval
         res.add(new Interval(curStart, curEnd));  
         return res;
     }
