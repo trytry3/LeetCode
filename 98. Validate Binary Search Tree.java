@@ -48,7 +48,7 @@ class Solution {
     }
 }
 
-// method 2: see iterative method of 94. Binary Tree Inorder Traversal.java
+// method 2: see iterative method of 94. Binary Tree Inorder Traversal
 class Solution {
     public boolean isValidBST(TreeNode root) {
         if (root == null) 

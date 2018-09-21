@@ -30,7 +30,7 @@ The above output corresponds to the 5 unique BST's shown below:
  * }
  */
 
-// see 96. Unique Binary Search Trees.java
+// see 96. Unique Binary Search Trees
 class Solution {
     public List<TreeNode> generateTrees(int n) {
         if (n==0) 

@@ -17,7 +17,7 @@ A solution set is:
 */
 
 // dfs, backtracking
-// see 90. Subsets II.java
+// see 90. Subsets II
 class Solution {
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
         List<List<Integer>> res = new ArrayList<>();

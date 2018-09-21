@@ -52,7 +52,7 @@ class Solution {
 }
 
 
-// method 2: see iterative method of 94. Binary Tree Inorder Traversal.java
+// method 2: see iterative method of 94. Binary Tree Inorder Traversal
 class Solution {
     public int kthSmallest(TreeNode root, int k) {
         Stack<TreeNode> stack = new Stack<>(); 
