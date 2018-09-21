@@ -29,7 +29,7 @@ class Solution {
             // overlap
             if (intervals.get(i).start <= curEnd) {
                 curEnd = Math.max(curEnd, intervals.get(i).end);
-            } else{
+            } else {
                 res.add(new Interval(curStart, curEnd));
                 curStart = intervals.get(i).start;
                 curEnd = intervals.get(i).end;
