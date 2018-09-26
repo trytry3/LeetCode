@@ -34,8 +34,11 @@ class Solution {
     
     private void traverse(TreeNode cur, List<List<Integer>> res, int level) {
         if (cur == null) 
-            return;      
-        if (res.size() <= level) {
+            return;
+        // that level's list is not created yet
+        // e.g. when at level 1, before traversing, res has size 1
+        // need to add a new list to start traversing
+        if (res.size() == level) {
             List<Integer> newLevel = new ArrayList<>();
             res.add(newLevel);
         }   
