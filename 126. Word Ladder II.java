@@ -36,7 +36,7 @@ class Solution {
 		List<List<String>> res = new ArrayList<>();
 		// neighbors for every node
 		Map<String, List<String>> nodeNeighbors = new HashMap<>();
-		// distance of every node from the start node, also serve the purpose of checking visited
+		// shortest distance of every node from the start node, also serve the purpose of checking visited
 		Map<String, Integer> distances = new HashMap<String, Integer>();
 
 		bfs(start, end, dict, nodeNeighbors, distances);
@@ -65,9 +65,10 @@ class Solution {
 
 				for (String neighbor : neighbors) {
 					nodeNeighbors.get(cur).add(neighbor);
+					// since it's bfs, `distances` is recording the shortest distance
 					if (!distances.containsKey(neighbor)) {
 						distances.put(neighbor, curDistance + 1);
-                        // found the shortest path
+                        // found the shortest path, other neighbors must have longer paths, so ignore
 						if (end.equals(neighbor)) 
 							foundEnd = true;
 						else
