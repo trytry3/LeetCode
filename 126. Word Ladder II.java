@@ -68,7 +68,7 @@ class Solution {
 					// since it's bfs, `distances` is recording the shortest distance
 					if (!distances.containsKey(neighbor)) {
 						distances.put(neighbor, curDistance + 1);
-                    	// found the shortest path, other neighbors must have longer paths, so ignore
+						// found the shortest path, other neighbors must have longer paths, so ignore
 						if (end.equals(neighbor)) 
 							foundEnd = true;
 						else
