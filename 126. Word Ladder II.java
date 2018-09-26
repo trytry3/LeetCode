@@ -95,7 +95,7 @@ class Solution {
 				}
 			}
 		}
-        path.remove(path.size() - 1);
+		path.remove(path.size() - 1);
 	}
 
 	private List<String> getNeighbors(String word, Set<String> dict) {
