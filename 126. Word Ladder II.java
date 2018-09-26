@@ -49,7 +49,7 @@ class Solution {
                      Map<String, List<String>> nodeNeighbors, Map<String, Integer> distances) {
 		for (String str : dict)
 			nodeNeighbors.put(str, new ArrayList<String>());
-        nodeNeighbors.put(start, new ArrayList<String>());
+		nodeNeighbors.put(start, new ArrayList<String>());
 
 		Queue<String> queue = new LinkedList<String>();
 		queue.offer(start);
@@ -96,12 +96,12 @@ class Solution {
 			}
 		}
         path.remove(path.size() - 1);
-    }
+	}
 
 	private List<String> getNeighbors(String word, Set<String> dict) {
 		List<String> nextWords = new ArrayList<>();
 		for (int i = 0; i < word.length(); i++) {
-            for (char c = 'a'; c <= 'z'; c++) {
+			for (char c = 'a'; c <= 'z'; c++) {
 				if (c == word.charAt(i)) {
 					continue;
 				}
@@ -114,7 +114,7 @@ class Solution {
 		return nextWords;
 	}
     
-    private String replace(String s, int index, char c) {
+	private String replace(String s, int index, char c) {
 		char[] chars = s.toCharArray();
 		chars[index] = c;
 		return String.valueOf(chars);
