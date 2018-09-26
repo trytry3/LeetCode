@@ -68,7 +68,7 @@ class Solution {
 					// since it's bfs, `distances` is recording the shortest distance
 					if (!distances.containsKey(neighbor)) {
 						distances.put(neighbor, curDistance + 1);
-                        // found the shortest path, other neighbors must have longer paths, so ignore
+                    	// found the shortest path, other neighbors must have longer paths, so ignore
 						if (end.equals(neighbor)) 
 							foundEnd = true;
 						else
@@ -82,7 +82,7 @@ class Solution {
 		}
 	}
     
-    // output all paths with the shortest distance
+	// output all paths with the shortest distance
 	private void dfs(String cur, String end, Map<String, List<String>> nodeNeighbors, 
                      Map<String, Integer> distances, List<String> path, List<List<String>> res) {
 		path.add(cur);
