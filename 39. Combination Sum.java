@@ -43,8 +43,8 @@ class Solution {
             return;
         for (int i = start; i < candidates.length; i++) {
             // if the input contains duplicates, this step is to remove duplicates in result
-            if (i != start && candidates[i] == candidates[i-1])
-                continue;
+            // if (i != start && candidates[i] == candidates[i-1])
+            //     continue;
             tempList.add(candidates[i]);
             // not from i+1 because we can reuse same elements
             dfs(res, tempList, candidates, target-candidates[i], i);

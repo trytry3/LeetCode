@@ -52,7 +52,7 @@ public class NestedIterator implements Iterator<Integer> {
             if (cur.isInteger()) {
                 return true;
             }
-            // remove cur from dq
+            // cur is a list, remove cur from dq
             dq.pollFirst();
             // since cur is the front, add the elements in cur to front
             for (int i = cur.getList().size() - 1; i >= 0; i--) {
