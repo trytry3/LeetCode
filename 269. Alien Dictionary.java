@@ -52,7 +52,10 @@ class Solution {
 
 		for (String s : words) {
 			for (char c : s.toCharArray()) {
-				indegree.put(c, 0);
+				if (!indegree.containsKey(c)) {
+					indegree.put(c, 0);
+					graph.put(c, new HashSet<>());
+				}
 			}
 		}
 
@@ -65,13 +68,12 @@ class Solution {
 				char c1 = cur.charAt(j);
 				char c2 = next.charAt(j);
 				if (c1 != c2) {
-					if (!graph.containsKey(c1)) {
-						graph.put(c1, new HashSet<>());
-					}
+					// avoid adding duplicate edge
 					if (!graph.get(c1).contains(c2)) {
 						graph.get(c1).add(c2);
 						indegree.put(c2, indegree.get(c2) + 1);
 					}
+					// no need to check the rest chars
 					break;
 				}
 			}
@@ -84,14 +86,12 @@ class Solution {
 		}
 
 		while (!queue.isEmpty()) {
-			char c = queue.remove();
+			char c = queue.poll();
 			result += c;
-			if (graph.containsKey(c)) {
-				for (char neighbor : graph.get(c)) {
-					indegree.put(neighbor, indegree.get(neighbor) - 1);
-					if (indegree.get(neighbor) == 0)
-						queue.add(neighbor);
-				}
+			for (char neighbor : graph.get(c)) {
+				indegree.put(neighbor, indegree.get(neighbor) - 1);
+				if (indegree.get(neighbor) == 0)
+					queue.add(neighbor);
 			}
 		}
 
