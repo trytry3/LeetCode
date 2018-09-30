@@ -19,6 +19,8 @@ Output: [3,2,1]
  *     TreeNode(int x) { val = x; }
  * }
  */
+
+// method 1:
 class Solution {
     public List<Integer> postorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<Integer>();
@@ -33,5 +35,20 @@ class Solution {
         traverse(node.left, list);
         traverse(node.right, list);
         list.add(node.val);
+    }
+}
+
+// method 2:
+class Solution {
+    public List<Integer> postorderTraversal(TreeNode root) {
+        if (root == null)
+            return new ArrayList<>();
+        List<Integer> left = postorderTraversal(root.left);
+        List<Integer> right = postorderTraversal(root.right);
+        List<Integer> res = new ArrayList<>();
+        res.addAll(left);
+        res.addAll(right);
+        res.add(root.val);
+        return res;
     }
 }
