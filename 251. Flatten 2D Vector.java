@@ -44,7 +44,7 @@ public class Vector2D implements Iterator<Integer> {
     }
 }
 
-// method 2:
+// method 2: use two iterators
 public class Vector2D {
     private Iterator<List<Integer>> it;
     private Iterator<Integer> cur;
@@ -62,6 +62,13 @@ public class Vector2D {
             cur = it.next().iterator();
         }
         return cur != null && cur.hasNext();
+    }
+
+    public void remove() {
+        while (cur == null || it.hasNext())
+            cur = it.next().iterator();
+        if (cur != null)
+            cur.remove();
     }
 }
 
