@@ -68,7 +68,7 @@ class Solution {
 			}
 			StringBuilder builder = new StringBuilder();
 			builder.append(words[index]);
-            // blanks needed
+			// blanks needed
 			int diff = last - 1 - index;
 			// if last line or number of words in the line is 1, left-justified
 			if (last == words.length || diff == 0) {
@@ -81,9 +81,9 @@ class Solution {
 				}
 			} else {
 				// middle justified
-                // average number of spaces in each blank
+				// average number of spaces in each blank
 				int spaces = (maxWidth - count) / diff;
-                // remainder spaces to distribute to each blank
+				// remainder spaces to distribute to each blank
 				int r = (maxWidth - count) % diff;
 				for (int i = index + 1; i < last; i++) {
 					for (int k = spaces; k > 0; k--) {
@@ -93,7 +93,7 @@ class Solution {
 						builder.append(" ");
 						r--;
 					}
-                    // because `count` included a space
+					// because `count` included a space
 					builder.append(" ");
 					builder.append(words[i]);
 				}
