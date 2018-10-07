@@ -49,8 +49,35 @@ class Solution {
 		boolean firstMatch = !text.isEmpty() && (pattern.charAt(0) == text.charAt(0) || pattern.charAt(0) == '.');
     
 		if (pattern.length() >= 2 && pattern.charAt(1) == '*') {
-            // first does not match || first match
+        	// first does not match || first match
+        	// isMatch(text.substring(1), pattern) means repeatedly match same previous char
 			return (isMatch(text, pattern.substring(2)) || (firstMatch && isMatch(text.substring(1), pattern)));
+		} else {
+			return firstMatch && isMatch(text.substring(1), pattern.substring(1));
+		}
+	}
+}
+
+
+/*
+'.' Matches any single character.
+'*' Matches zero or more of the preceding element.
+'+' Matches one or more of the preceding element.
+*/
+
+// my solution to the airbnb question
+class Solution {
+	public boolean isMatch(String text, String pattern) {
+		if (pattern.isEmpty())
+			return text.isEmpty();
+		boolean firstMatch = !text.isEmpty() && (pattern.charAt(0) == text.charAt(0) || pattern.charAt(0) == '.');
+
+		if (pattern.length() >= 2 && pattern.charAt(1) == '*') {
+			// first does not match || first match
+			// isMatch(text.substring(1), pattern) means repeatedly match same previous char
+			return (isMatch(text, pattern.substring(2)) || (firstMatch && isMatch(text.substring(1), pattern)));
+		} else if (pattern.length() >= 2 && pattern.charAt(1) == '+') {
+			return firstMatch && (isMatch(text.substring(1), pattern.substring(2)) || isMatch(text.substring(1), pattern));
 		} else {
 			return firstMatch && isMatch(text.substring(1), pattern.substring(1));
 		}
