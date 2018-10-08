@@ -68,6 +68,7 @@ class Solution {
         visited[i][j] = true;
         node = node.children[board[i][j] - 'a'];
         if (node.isWord) {
+            // also need to backtrack after adding to result
             res.add(prefix + board[i][j]);
         }
 
