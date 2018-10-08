@@ -34,32 +34,33 @@ class Solution {
         int id;
         int costFromSrc;
         int stopFromSrc;
-        
+
         public City(int id, int costFromSrc, int stopFromSrc) {
             this.id = id;
             this.costFromSrc = costFromSrc;
             this.stopFromSrc = stopFromSrc;
         }
-        
+
         public boolean equals(City c) {
             if (c instanceof City)
                 return this.id == c.id;
             return false;
         }
+
         public int compareTo(City c) {
             return this.costFromSrc - c.costFromSrc;
         }
     }
-    
+
     public int findCheapestPrice(int n, int[][] flights, int src, int dst, int K) {
         int[][] costGraph = new int[n][n];
-        for(int[] flight: flights)
-            costGraph[flight[0]][flight[1]] = flight[2]; 
-						
+        for (int[] flight : flights)
+            costGraph[flight[0]][flight[1]] = flight[2];
+
         // sort by cost from src
         PriorityQueue<City> minHeap = new PriorityQueue();
-        minHeap.offer(new City(src,0,0));
-	
+        minHeap.offer(new City(src, 0, 0));
+
         // cost[i] stores min cost from src for each city i
         int[] cost = new int[n];
         Arrays.fill(cost, Integer.MAX_VALUE);
@@ -68,32 +69,33 @@ class Solution {
         int[] stopCounts = new int[n];
         Arrays.fill(stopCounts, Integer.MAX_VALUE);
         stopCounts[src] = 0;
-				
+
         while (!minHeap.isEmpty()) {
             City curCity = minHeap.poll();
-            if (curCity.id == dst) 
+            if (curCity.id == dst)
                 return cost[dst];
-            if (curCity.stopFromSrc > K) 
+            if (curCity.stopFromSrc > K)
                 continue;
             // explore all its neighbors, and add the min cost neighbor to minHeap
             int[] neighborCosts = costGraph[curCity.id];
             for (int i = 0; i < n; i++) {
-                if (neighborCosts[i] != 0) {
-                    int newCost = curCity.costFromSrc + neighborCosts[i];
-                    int newStopCount = curCity.stopFromSrc + 1;
-                    if (newCost < cost[i]) {
-                        minHeap.offer(new City(i, newCost, newStopCount));
-                        cost[i] = newCost;
-                    }
-                    // since there is a stop count limit K, not min cost but smaller stops should also be considered
-                    else if (newStopCount < stopCounts[i]) {
-                        minHeap.offer(new City(i, newCost, newStopCount));
-                        stopCounts[i] = newStopCount;
-                    }
+                if (neighborCosts[i] == 0)
+                    continue;
+                int newCost = curCity.costFromSrc + neighborCosts[i];
+                int newStopCount = curCity.stopFromSrc + 1;
+                if (newCost < cost[i]) {
+                    minHeap.offer(new City(i, newCost, newStopCount));
+                    cost[i] = newCost;
+                }
+                // since there is a stop count limit K, not min cost but smaller stops should also be considered
+                else if (newStopCount < stopCounts[i]) {
+                    minHeap.offer(new City(i, newCost, newStopCount));
+                    stopCounts[i] = newStopCount;
                 }
             }
+
         }
-        
-        return cost[dst] == Integer.MAX_VALUE? -1 : cost[dst];
+
+        return cost[dst] == Integer.MAX_VALUE ? -1 : cost[dst];
     }
 }
