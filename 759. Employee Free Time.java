@@ -29,6 +29,8 @@ schedule and schedule[i] are lists with lengths in range [1, 50].
  *     Interval(int s, int e) { start = s; end = e; }
  * }
  */
+
+// compare 253. Meeting Rooms II
 class Solution {
     public List<Interval> employeeFreeTime(List<List<Interval>> schedule) {
         List<Interval> res = new ArrayList<>();
