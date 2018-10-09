@@ -8,3 +8,4 @@
 
 #### Finding the shortest paths between nodes in a graph
 - [Dijkstra’s algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
+   Note: the difference between Dijkstra and BFS is that Dijkstra uses heap, while BFS uses queue
