@@ -22,10 +22,10 @@ Do not use the eval built-in library function.
 // stack
 class Solution {
 	public int calculate(String s) {
-        if (s == null)
+		if (s == null)
 			return 0;
-        // remove spaces
-        s = s.trim().replaceAll(" +", "");
+		// remove spaces
+		s = s.trim().replaceAll(" +", "");
 		int len = s.length();
 		Stack<Integer> stack = new Stack<>();
 		int num = 0;
@@ -34,8 +34,8 @@ class Solution {
 			if (Character.isDigit(s.charAt(i))) {
 				num = num * 10 + s.charAt(i) - '0';
 			}
-            // when it's not a number, add the current number to stack
-            // i == len-1 to make last number added to stack
+			// when it's not a number, add the current number to stack
+			// i == len-1 to make last number added to stack
 			if (!Character.isDigit(s.charAt(i)) || i == len - 1) {
 				if (sign == '-') {
 					stack.push(-num);
@@ -50,7 +50,7 @@ class Solution {
 					stack.push(stack.pop() / num);
 				}
 				sign = s.charAt(i);
-                // current number finished
+				// current number finished
 				num = 0;
 			}
 		}
