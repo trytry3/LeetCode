@@ -36,4 +36,13 @@ class Solution {
             return left == right;
         return left.val == right.val && isSame(left.left, right.right) && isSame(left.right, right.left);
     }
+    
+    private boolean isSame2(TreeNode left, TreeNode right) {
+        if (left == null && right == null)
+            return true;
+        else if (left != null && right != null && left.val == right.val)
+            return isSame(left.right, right.left) && isSame(left.left, right.right);
+        else
+            return false;
+    }
 }
