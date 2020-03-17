@@ -17,7 +17,62 @@ Explanation: There are a total of 2 courses to take.
 */
 
 // topological sorting
-class Solution{
+class Solution {
+    // numCourses is actually not useful
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        List<Integer> sortedCourses = new ArrayList<>();
+        
+        // store the prerequisites as a directed graph
+        // course -> list of next courses
+        Map<Integer, List<Integer>> graph = new HashMap<>();
+        for (int[] prerequisite: prerequisites) {
+            int course = prerequisite[0];
+            int req = prerequisite[1];
+            graph.putIfAbsent(req, new ArrayList<>()); 
+            graph.get(req).add(course);
+            // make sure the nodes with no neighbors are also included in the graph
+            graph.putIfAbsent(course, new ArrayList<>()); 
+        }
+        
+        // store indegrees in a map
+        // course -> indegree
+        Map<Integer, Integer> indegrees = new HashMap<>();
+        for (Integer course: graph.keySet()) {
+            // increase neighbors' indegree
+            List<Integer> neighbors = graph.get(course);
+            for (Integer neighbor: neighbors) {
+                indegrees.putIfAbsent(neighbor, 0);
+                indegrees.put(neighbor, indegrees.get(neighbor) + 1); 
+            }
+        }
+        
+        // add nodes originally with 0 indegree to a queue
+        Queue<Integer> queue = new LinkedList<Integer>();
+        for (Integer course: graph.keySet()) {
+            if (!indegrees.containsKey(course)) {
+                queue.add(course);
+                sortedCourses.add(course);
+            }
+        }
+        
+        // poll a node in queue, reduce all its neighbor's indegree by 1,
+        // add all neighbors whose indegree is 0 to the queue
+        while (!queue.isEmpty()) {
+            Integer course = queue.poll();
+            for (Integer neighbor: graph.get(course)) {
+                indegrees.put(neighbor, indegrees.get(neighbor) - 1);
+                if (indegrees.get(neighbor) == 0) {
+                    queue.add(neighbor);
+                    sortedCourses.add(neighbor);
+                }
+            }
+        }
+        
+        return sortedCourses.size() == graph.keySet().size();
+    }
+}
+
+class Solution2 {
   public boolean canFinish(int numCourses, int[][] prerequisites) {
       int count = 0;
       Queue<Integer> queue = new LinkedList<Integer>();
