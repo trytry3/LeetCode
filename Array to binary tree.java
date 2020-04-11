@@ -75,11 +75,10 @@ class Node<T> {
 
 }
 
-
+// ---------------------------------------------------------------
 
 /* Construct binary tree from a given array in level order fashion 
 */
-
 class TreeNode {
 	Integer data;
 	TreeNode left, right;
