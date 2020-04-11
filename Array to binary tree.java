@@ -75,7 +75,6 @@ class Node<T> {
 
 }
 
-// ---------------------------------------------------------------
 
 /* Construct binary tree from a given array in level order fashion 
 */
