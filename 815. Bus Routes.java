@@ -18,45 +18,53 @@ The best strategy is take the first bus to the bus stop 7, then take the second 
 
 // bfs
 class Solution {
-	public int numBusesToDestination(int[][] routes, int S, int T) {
-		Set<Integer> visited = new HashSet<>();
-		Queue<Integer> queue = new LinkedList<>();
-		// key is bus stop, value is bus
-		Map<Integer, List<Integer>> map = new HashMap<>();
-
-		int count = 0;
-		if (S == T)
-			return 0;
-
-		// i is buses, j is bus tops
-		for (int i = 0; i < routes.length; i++) {
-			for (int j = 0; j < routes[i].length; j++) {
-				List<Integer> buses = map.getOrDefault(routes[i][j], new ArrayList<>());
-				buses.add(i);
-				map.put(routes[i][j], buses);
-			}
-		}
-
-		queue.offer(S);
-		while (!queue.isEmpty()) {
-			int len = queue.size();
-			count++;
-			for (int i = 0; i < len; i++) {
-				int cur = queue.poll();
-				List<Integer> buses = map.get(cur);
-                // find next reachable bus stops
-				for (int bus : buses) {
-					if (visited.contains(bus))
-						continue;
-					visited.add(bus);
-					for (int j = 0; j < routes[bus].length; j++) {
-						if (routes[bus][j] == T)
-							return count;
-						queue.offer(routes[bus][j]);
-					}
-				}
-			}
-		}
-		return -1;
-	}
+    public int numBusesToDestination(int[][] routes, int S, int T) {
+        // visited buses
+        // why use visited for buses, but not for stops?
+        // because we try to visit all buses to see if there is a solution,
+        // not all bus stops need to be visited.
+        // if use visited for stops, it will end in infinite loop
+        Set<Integer> visited = new HashSet<>();  
+        // bus stops
+        Queue<Integer> queue = new LinkedList<>();
+        // key is bus stop, value is a list of buses
+        Map<Integer, List<Integer>> map = new HashMap<>();
+        
+        int count = 0;
+        if (S == T)
+            return count;
+        
+        // i is bus index, j is stop index
+        for (int i = 0; i < routes.length; i++) {
+            for (int j = 0; j < routes[i].length; j++) {
+                map.putIfAbsent(routes[i][j], new ArrayList<>());
+                List<Integer> buses = map.get(routes[i][j]);
+                buses.add(i);       
+            }
+        }
+        
+        queue.add(S);
+        while (!queue.isEmpty()) {
+            // exhaust each level before exploring next level
+            int len = queue.size();
+            count++;
+            for (int i = 0; i < len; i++) {
+                Integer curStop = queue.poll();
+                List<Integer> buses = map.get(curStop);
+                for (int bus: buses) {
+                    if (visited.contains(bus))
+                        continue;
+                    visited.add(bus);
+                    int[] nextStops = routes[bus];
+                    for (int nextStop: nextStops) {
+                        if (nextStop == T)
+                            return count;
+                        else
+                            queue.add(nextStop);
+                    }
+                }
+            }     
+        }
+        return -1;
+    }
 }
