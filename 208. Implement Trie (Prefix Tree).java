@@ -54,7 +54,7 @@ class Trie {
             }
             node = node.children[c-'a'];
         }
-        return node != null && node.isEnd;
+        return node.isEnd;
     }
     
     /** Returns if there is any word in the trie that starts with the given prefix. */
