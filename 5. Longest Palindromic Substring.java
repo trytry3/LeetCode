@@ -17,7 +17,7 @@ class Solution {
         if (n < 2)
             return s;
         int maxLen = 0, start = 0, end = 0;
-        // P[i][j] is true when s[i] equals to s[j] and s(i+1 ... j-1) is a palindromic substring
+        // P[j][i] is true when s[j] equals to s[i] and s(j+1 ... i-1) is a palindromic substring
         boolean[][] P = new boolean[n][n];
     
         for (int i = 0; i < n; i++) {
