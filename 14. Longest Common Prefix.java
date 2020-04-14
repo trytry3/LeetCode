@@ -15,7 +15,28 @@ All given inputs are in lowercase letters a-z.
 */
 
 class Solution {
+    // another way is to use Trie to store the strs
     public String longestCommonPrefix(String[] strs) {
+        if (strs == null || strs.length == 0)
+            return "";
+        int len = strs[0].length();
+        StringBuilder curLongest = new StringBuilder();
+        for (int i = 0; i < len; i++) {
+            Character curChar = strs[0].charAt(i);
+            for (String s: strs) {
+                if (i >= s.length())
+                    return curLongest.toString();
+                else {
+                    if (s.charAt(i) != curChar)
+                        return curLongest.toString();
+                }
+            }
+            curLongest.append(curChar);
+        }
+        return curLongest.toString();
+    }
+    
+    public String longestCommonPrefix2(String[] strs) {
         if (strs == null || strs.length == 0) 
             return "";
         String prefix = strs[0];
