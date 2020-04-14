@@ -22,6 +22,7 @@ class Solution {
     
         for (int i = 0; i < n; i++) {
             // j is left pointer
+            // j has to be left pointer because otherwise the previous case was not filled yet
             for (int j = 0; j < i; j++) {
                 P[i][i] = true; 
                 P[j][i] = (s.charAt(j) == s.charAt(i) && (i - j < 2 || P[j + 1][i - 1])); 
