@@ -53,6 +53,8 @@ Explanation:
 The user finished the input, the sentence "i a" should be saved as a historical sentence in system. 
 And the following input will be counted as a new search.
 */
+
+// using one level indexing
 class AutocompleteSystem {
     // arr[0] is a map that stores the sentences starting with an 'a'
     // map's key is sentence, value is times
