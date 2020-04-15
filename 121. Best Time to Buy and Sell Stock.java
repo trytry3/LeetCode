@@ -22,10 +22,10 @@ class Solution {
         int min = prices[0];
         int maxProfit = Integer.MIN_VALUE;
         for (int price: prices) {
+            maxProfit = Math.max(maxProfit, price-min);
             if (price < min) {
                 min = price;
             }
-            maxProfit = Math.max(maxProfit, price-min);
         }
         return maxProfit;
     }
