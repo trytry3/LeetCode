@@ -11,7 +11,7 @@ Your algorithm should run in O(n2) complexity.
 Follow up: Could you improve it to O(n log n) time complexity?
 */
 
-// dynamic programming
+// dynamic programming O(n^2)
 class Solution {
     public int lengthOfLIS(int[] nums) {
         if (nums == null || nums.length == 0)
