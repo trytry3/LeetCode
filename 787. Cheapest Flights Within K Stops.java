@@ -28,7 +28,7 @@ There will not be any duplicated flights or self cycles.
 */
 
 
-// dijkstra
+// not quite dijkstra
 class Solution {
     private class City implements Comparable<City> {
         int id;
