@@ -19,28 +19,29 @@ class Solution {
         if (graph == null || graph.length == 0) 
             return res;
         List<Integer> tempList = new ArrayList<>();
-        boolean[] isVisited = new boolean[graph.length];
+        Set<Integer> visited = new HashSet<>();
+        // note: add node 0 to tempList and visited
         tempList.add(0);
-        isVisited[0] = true;
-        dfs(res, tempList, graph, 0, isVisited);
-        return res;
+        visited.add(0);
+        dfs(res, tempList, graph, 0, visited);
+        return res;    
     }
-
-    private void dfs(List<List<Integer>> res, List<Integer> tempList, int[][] graph, int nth, boolean[] isVisited) {
-        int len = graph.length;
-        if (tempList.get(tempList.size()-1) == len-1) {
-            res.add(new ArrayList<Integer>(tempList));
+    
+    private void dfs(List<List<Integer>> res, List<Integer> tempList, int[][] graph, int curNode, Set<Integer> visited) {
+        // tempList reaches target
+        if (tempList.get(tempList.size()-1) == graph.length-1) {
+            res.add(new ArrayList<>(tempList));
             return;
         }
-        for (int neighbor: graph[nth]) {
-            if (isVisited[neighbor]) 
+        for (int next: graph[curNode]) {
+            if (visited.contains(next)) 
                 continue;
-            tempList.add(neighbor);
-            isVisited[neighbor] = true; 
-            dfs(res, tempList, graph, neighbor, isVisited);
+            tempList.add(next);
+            visited.add(next);
+            dfs(res, tempList, graph, next, visited);
             tempList.remove(tempList.size()-1);
-            isVisited[neighbor] = false;
-        }      
+            visited.remove(next);
+        } 
     }
 }
 
