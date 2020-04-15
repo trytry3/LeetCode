@@ -74,6 +74,8 @@ class Solution {
             City curCity = minHeap.poll();
             if (curCity.id == dst)
                 return cost[dst];
+            // up to K stops means the destination's stopFromSrc should be <= K+1
+            // thus when curCity.stopFromSrc = K, we should keep exploring
             if (curCity.stopFromSrc > K)
                 continue;
             // explore all its neighbors, and add the min cost neighbor to minHeap
