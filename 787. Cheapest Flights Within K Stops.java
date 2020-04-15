@@ -81,7 +81,7 @@ class Solution {
             // explore all its neighbors, and add the min cost neighbor to minHeap
             int[] neighborCosts = costGraph[curCity.id];
             for (int i = 0; i < n; i++) {
-                // no flights to this city
+                // not initialized, no flights to this city
                 if (neighborCosts[i] == 0)
                     continue;
                 int newCost = curCity.costFromSrc + neighborCosts[i];
