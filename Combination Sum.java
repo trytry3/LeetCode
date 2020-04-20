@@ -14,6 +14,7 @@ class Solution {
   private static void dfs(List<List<Integer>> res, List<Integer> tempList, int start, int[] array, int remainder) {
     if (remainder == 0) {
       res.add(new ArrayList<>(tempList));
+      // no return, since numbers can contain 0, and want 0 to be included in result
     } 
     
     for (int i = start; i < array.length; i++) {
