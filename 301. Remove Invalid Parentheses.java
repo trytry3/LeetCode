@@ -23,12 +23,16 @@ class Solution {
         return res;
     }
     
+    // last_i is the removing start position
+    // last_j is the last removal position
     private void remove(String s, List<String> res, int count, int last_i, int last_j, char[] par) {
         //count means the current number of par[0] - that of par[1]
+        // par[0] == ')' means it's the removal of excessive (, thus reverse result
         if (last_i == s.length() && par[0] == ')') {
             res.add(new StringBuilder(s).reverse().toString());
             return;
         }
+        // par[0] == '(' means it's the removal of excessive )
         if (last_i == s.length() && par[0] == '(') {
             // finished left to right and do reverse
             String reverse = new StringBuilder(s).reverse().toString();
