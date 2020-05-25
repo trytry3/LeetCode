@@ -30,54 +30,54 @@ Explanation: The endWord "cog" is not in wordList, therefore no possible transfo
 // bfs
 class Solution {
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
-		Set<String> dict = new HashSet<>(wordList);
-		Queue<String> queue = new LinkedList<>();
+        Set<String> dict = new HashSet<>(wordList);
+        Queue<String> queue = new LinkedList<>();
         HashSet<String> visited = new HashSet<>();
-		queue.offer(beginWord);
-		visited.add(beginWord);
-		int len = 1;
-		while (!queue.isEmpty()) {
+        queue.offer(beginWord);
+        visited.add(beginWord);
+        int len = 1;
+        while (!queue.isEmpty()) {
             len++;
             // have to fix size here, since queue size is changing in for loop
             int size = queue.size();
             // one queue is one level, len update for each level
-			for (int i = 0; i < size; i++) {
-				String word = queue.poll();
-				for (String nextWord : getNextWords(word, dict)) {
-					if (visited.contains(nextWord)) {
-						continue;
-					}
-					if (nextWord.equals(endWord)) {
-						return len;
-					}
-					visited.add(nextWord);
-					queue.offer(nextWord);
-				}
-			}
-		}
+            for (int i = 0; i < size; i++) {
+                String word = queue.poll();
+                for (String nextWord : getNextWords(word, dict)) {
+                    if (visited.contains(nextWord)) {
+                        continue;
+                    }
+                    if (nextWord.equals(endWord)) {
+                        return len;
+                    }
+                    visited.add(nextWord);
+                    queue.offer(nextWord);
+                }
+            }
+        }
         // no possible transformation
-		return 0;
-	}
+        return 0;
+    }
 
-	private List<String> getNextWords(String word, Set<String> dict) {
-		List<String> nextWords = new ArrayList<>();
-		for (int i = 0; i < word.length(); i++) {
+    private List<String> getNextWords(String word, Set<String> dict) {
+        List<String> nextWords = new ArrayList<>();
+        for (int i = 0; i < word.length(); i++) {
             for (char c = 'a'; c <= 'z'; c++) {
-				if (c == word.charAt(i)) {
-					continue;
-				}
-				String nextWord = replace(word, i, c);
-				if (dict.contains(nextWord)) {
-					nextWords.add(nextWord);
-				}
-			}
-		}
-		return nextWords;
-	}
+                if (c == word.charAt(i)) {
+                    continue;
+                }
+                String nextWord = replace(word, i, c);
+                if (dict.contains(nextWord)) {
+                    nextWords.add(nextWord);
+                }
+            }
+        }
+        return nextWords;
+    }
 
-	private String replace(String s, int index, char c) {
-		char[] chars = s.toCharArray();
-		chars[index] = c;
-		return new String(chars);
-	}
+    private String replace(String s, int index, char c) {
+        char[] chars = s.toCharArray();
+        chars[index] = c;
+        return new String(chars);
+    }
 }
