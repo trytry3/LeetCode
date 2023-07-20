@@ -66,7 +66,7 @@ class Solution {
 			String next = words[i + 1];
 			int curLen = cur.length();
 			int nextLen = next.length();
-			int l = Math.min(cur.length(), next.length());
+			int l = Math.min(curLen, nextLen);
 			for (int j = 0; j < l; j++) {
 				char c1 = cur.charAt(j);
 				char c2 = next.charAt(j);
