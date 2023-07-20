@@ -3,7 +3,7 @@ In an alien language, surprisingly, they also use English lowercase letters, but
 
 Given a sequence of words written in the alien language, and the order of the alphabet, return true if and only if the given words are sorted lexicographically in this alien language.
 
- 
+
 
 Example 1:
 
@@ -22,13 +22,14 @@ Output: false
 Explanation: The first three characters "app" match, and the second string is shorter (in size.) According to lexicographical rules "apple" > "app", because 'l' > '∅', where '∅' is defined as the blank character which is less than any other character (More info).
  */
 
+
 class Solution {
     public boolean isAlienSorted(String[] words, String order) {
         Map<Character, Integer> map = buildMap(order);
 
         for (int i = 0; i < words.length - 1; i++) {
             String cur = words[i];
-            String next = words[i+1];
+            String next = words[i + 1];
             int curLen = cur.length();
             int nextLen = next.length();
             int l = Math.min(curLen, nextLen);
