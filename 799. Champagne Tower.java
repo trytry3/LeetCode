@@ -33,19 +33,19 @@ Constraints:
 class Solution {
     // same as pascal triangle
     public double champagneTower(int poured, int queryRow, int queryGlass) {
-			int rows = 100, cols = 100;
-			double res[][] = new double[rows][cols];
-			res[0][0] = poured;
-			for (int i = 0; i < rows-1; i++) {
-				for (int j = 0; j <= i; j++) {
-                    // flows to next row
-					if (res[i][j] > 1) {
-						res[i+1][j] += (res[i][j] - 1)/2.0;
-						res[i+1][j+1] += (res[i][j] - 1)/2.0;
-						res[i][j] = 1;
-					}
-				}
-			}
-      return res[queryRow][queryGlass];
+        int rows = 100, cols = 100;
+        double res[][] = new double[rows][cols];
+        res[0][0] = poured;
+        for (int i = 0; i < rows - 1; i++) {
+            for (int j = 0; j <= i; j++) {
+                // flows to next row
+                if (res[i][j] > 1) {
+                    res[i + 1][j] += (res[i][j] - 1) / 2.0;
+                    res[i + 1][j + 1] += (res[i][j] - 1) / 2.0;
+                    res[i][j] = 1;
+                }
+            }
+        }
+        return res[queryRow][queryGlass];
     }
 }
