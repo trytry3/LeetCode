@@ -64,6 +64,8 @@ class Solution {
 		for (int i = 0; i < words.length - 1; i++) {
 			String cur = words[i];
 			String next = words[i + 1];
+			int curLen = cur.length();
+			int nextLen = next.length();
 			int l = Math.min(cur.length(), next.length());
 			for (int j = 0; j < l; j++) {
 				char c1 = cur.charAt(j);
@@ -76,6 +78,9 @@ class Solution {
 					}
 					// no need to check the rest chars
 					break;
+				} else if (j == nextLen-1 && j < curLen-1){
+					// "abc", "ab" is invalid
+					return "";
 				}
 			}
 		}
