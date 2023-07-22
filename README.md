@@ -7,8 +7,10 @@
 - [Union-Find](https://www.geeksforgeeks.org/union-find/)
 
 #### Finding the shortest paths between nodes in a graph
-- [Dijkstra’s algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
+- BFS is the algorithm to use if we want to find the shortest path in an undirected, unweighted graph. The claim for BFS is that the first time a node is discovered during the traversal, that distance from the source would give us the shortest path.
+  
+- [Dijkstra’s algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm) for finding the shortest paths between nodes in a weighted graph
    
    Note: the difference between Dijkstra and BFS is that Dijkstra uses heap, while BFS uses queue
   
-- BFS is the algorithm to use if we want to find the shortest path in an undirected, unweighted graph. The claim for BFS is that the first time a node is discovered during the traversal, that distance from the source would give us the shortest path.
+
