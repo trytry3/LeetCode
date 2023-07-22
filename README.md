@@ -10,3 +10,5 @@
 - [Dijkstra’s algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
    
    Note: the difference between Dijkstra and BFS is that Dijkstra uses heap, while BFS uses queue
+#### BFS
+- BFS is the algorithm to use if we want to find the shortest path in an undirected, unweighted graph. The claim for BFS is that the first time a node is discovered during the traversal, that distance from the source would give us the shortest path.
