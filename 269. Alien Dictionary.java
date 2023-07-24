@@ -84,7 +84,8 @@ class Solution {
 				}
 			}
 		}
-
+		
+		// store nodes with indegree 0
 		Queue<Character> queue = new LinkedList<Character>();
 		for (char c : indegree.keySet()) {
 			if (indegree.get(c) == 0)
