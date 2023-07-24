@@ -26,12 +26,12 @@ class Solution {
         for (int i = 0; i < len; i++) {
             char c = s.charAt(i);
             if (Character.isDigit(c)) {
-                int sum = c - '0';
+                int num = c - '0';
                 while (i + 1 < len && Character.isDigit(s.charAt(i + 1))) {
-                    sum = sum * 10 + s.charAt(i + 1) - '0';
+                    num = num * 10 + s.charAt(i + 1) - '0';
                     i++;
                 }
-                result += sum * sign;
+                result += num * sign;
             } else if (c == '+')
                 sign = 1;
             else if (c == '-')
