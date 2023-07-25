@@ -22,6 +22,64 @@ Output: true
 
 // topological sorting
 class Solution {
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        int count = 0;
+        // graph
+        Map<Integer, List<Integer>> graph = new HashMap<>();
+        // indegree map
+        Map<Integer, Integer> indegrees = new HashMap<>();
+
+        // build directed graph
+        for (int[] prerequisite : prerequisites) {
+            int course = prerequisite[0];
+            int prereq = prerequisite[1];
+            graph.putIfAbsent(prereq, new ArrayList<>());
+            graph.get(prereq).add(course);
+            // make sure the nodes with no neighbors are also included in the graph
+            graph.putIfAbsent(course, new ArrayList<>());
+        }
+
+        // build indegree map
+        for (Integer course : graph.keySet()) {
+            // add the course itself
+            indegrees.putIfAbsent(course, 0);
+            // increment the course's neighbors' indegree by 1
+            List<Integer> neighborCourses = graph.get(course);
+            for (Integer neighbor : neighborCourses) {
+                indegrees.putIfAbsent(neighbor, 0);
+                indegrees.put(neighbor, indegrees.get(neighbor) + 1);
+            }
+        }
+
+        // add nodes with 0 indegree to a queue
+        Queue<Integer> queue = new LinkedList<>();
+        for (Integer course : indegrees.keySet()) {
+            if (indegrees.get(course) == 0) {
+                queue.add(course);
+                count++;
+            }
+        }
+
+        while (!queue.isEmpty()) {
+            int course = queue.poll();
+            for (Integer neighbor : graph.get(course)) {
+                int newIndegree = indegrees.get(neighbor) - 1;
+                if (newIndegree == 0) {
+                    queue.add(neighbor);
+                    count++;
+                }
+                indegrees.put(neighbor, newIndegree);
+            }
+        }
+
+        // not check count == numCourses, because numCourses can be random
+        // as long as the graph does not contain cycles, it is valid
+        return count == graph.keySet().size();
+    }
+}
+
+
+class Solution {
     // numCourses is actually not useful
     public boolean canFinish(int numCourses, int[][] prerequisites) {
         List<Integer> sortedCourses = new ArrayList<>();
