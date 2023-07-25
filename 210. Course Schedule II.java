@@ -29,6 +29,74 @@ class Solution {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
         int[] res = new int[numCourses];
         int count = 0;
+        // graph to store prerequisites
+        Map<Integer, List<Integer>> graph = new HashMap<>();
+        // indegree map including all courses
+        Map<Integer, Integer> indegrees = new HashMap<>();
+
+        // build directed graph
+        for (int[] prerequisite : prerequisites) {
+            int course = prerequisite[0];
+            int prereq = prerequisite[1];
+            graph.putIfAbsent(prereq, new ArrayList<>());
+            graph.get(prereq).add(course);
+        }
+
+        // build indegree map
+        // note: use numbers till numCourses as keys instead of nodes in graph
+        // because some courses may not be in prerequisites
+        for (int i = 0; i < numCourses; i++) {
+            // add the course itself
+            indegrees.putIfAbsent(i, 0);
+            if (!graph.keySet().contains(i))
+                continue;
+            // increment the course's neighbors' indegree by 1
+            List<Integer> neighborCourses = graph.get(i);
+            for (Integer neighbor : neighborCourses) {
+                indegrees.putIfAbsent(neighbor, 0);
+                indegrees.put(neighbor, indegrees.get(neighbor) + 1);
+            }
+        }
+
+        // add nodes with 0 indegree to a queue
+        Queue<Integer> queue = new LinkedList<>();
+        for (Integer course : indegrees.keySet()) {
+            if (indegrees.get(course) == 0) {
+                queue.add(course);
+                res[count] = course;
+                count++;
+            }
+        }
+
+        while (!queue.isEmpty()) {
+            int course = queue.poll();
+            // courses not listed in prerequisites
+            // i.e. standalone nodes with indegree 0, already added to res
+            if (!graph.keySet().contains(course)) {
+                continue;
+            }
+            for (Integer neighbor : graph.get(course)) {
+                int newIndegree = indegrees.get(neighbor) - 1;
+                if (newIndegree == 0) {
+                    queue.add(neighbor);
+                    res[count] = neighbor;
+                    count++;
+                }
+                indegrees.put(neighbor, newIndegree);
+            }
+        }
+
+        if (count != numCourses)
+            return new int[]{};
+        return res;
+    }
+}
+
+
+class Solution {
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
+        int[] res = new int[numCourses];
+        int count = 0;
         Queue<Integer> queue = new LinkedList<Integer>();
         List<List<Integer>> neighborList = new ArrayList<>();
         int[] indegree = new int[numCourses];
