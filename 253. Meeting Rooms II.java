@@ -14,6 +14,39 @@ Output: 2
  * }
  */
 
+// newest version
+class Solution {
+    public int minMeetingRooms(int[][] intervals) {
+        if (intervals == null || intervals.length == 0)
+            return 0;
+        
+        // sort interval starts
+        Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
+        
+        // store intervals with sorted ends
+        // one item in heap needs one room
+        PriorityQueue<int[]> heap = new PriorityQueue<int[]>((a, b) -> a[1] - b[1]);
+        
+        heap.add(intervals[0]);
+        for (int i = 1; i < intervals.length; i++) {
+            int[] intervalWithEarliestEnd = heap.poll();
+            if (intervals[i][0] < intervalWithEarliestEnd[1]) {// overlap, start a new room
+                heap.add(intervals[i]);
+                // add back the polled original room
+                heap.add(intervalWithEarliestEnd);
+            } else {
+                // original room was polled, add the current interval
+                // now the new earliest end is current interval's end
+                heap.add(intervals[i]);
+            }
+        }
+        return heap.size();
+    } 
+}
+
+
+
+
 // method 1
 class Solution {
     public int minMeetingRooms(Interval[] intervals) {
