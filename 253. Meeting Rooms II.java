@@ -45,8 +45,6 @@ class Solution {
 }
 
 
-
-
 // method 1
 class Solution {
     public int minMeetingRooms(Interval[] intervals) {
