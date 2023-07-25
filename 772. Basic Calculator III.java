@@ -50,7 +50,7 @@ class Solution {
                     nums.push(operation(ops.pop(), nums.pop(), nums.pop()));
                 ops.pop(); // get rid of '(' in the ops stack
             } else if (c == '+' || c == '-' || c == '*' || c == '/') {
-                while (!ops.isEmpty() && precedence(ops.peek(), c))
+                while (!ops.isEmpty() && isPrecedent(ops.peek(), c))
                     nums.push(operation(ops.pop(), nums.pop(), nums.pop()));
                 ops.push(c);
             }
@@ -77,7 +77,7 @@ class Solution {
     }
 
     // check if op1 precedes op2
-    private boolean precedence(char op1, char op2) {
+    private boolean isPrecedent(char op1, char op2) {
         if (op1 == '(' || op1 == ')') // not operations
             return false;
         if ((op2 == '*' || op2 == '/') && (op1 == '+' || op1 == '-'))
