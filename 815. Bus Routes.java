@@ -18,32 +18,32 @@ The best strategy is take the first bus to the bus stop 7, then take the second 
 
 // bfs
 class Solution {
-    public int numBusesToDestination(int[][] routes, int S, int T) {
+    public int numBusesToDestination(int[][] routes, int source, int target) {
         // visited buses
         // why use visited for buses, but not for stops?
         // because we try to visit all buses to see if there is a solution,
         // not all bus stops need to be visited.
         // if use visited for stops, it will end in infinite loop
-        Set<Integer> visited = new HashSet<>();  
+        Set<Integer> visited = new HashSet<>();
         // bus stops
         Queue<Integer> queue = new LinkedList<>();
         // key is bus stop, value is a list of buses
         Map<Integer, List<Integer>> map = new HashMap<>();
-        
+
         int count = 0;
-        if (S == T)
+        if (source == target)
             return count;
-        
+
         // i is bus index, j is stop index
         for (int i = 0; i < routes.length; i++) {
             for (int j = 0; j < routes[i].length; j++) {
                 map.putIfAbsent(routes[i][j], new ArrayList<>());
                 List<Integer> buses = map.get(routes[i][j]);
-                buses.add(i);       
+                buses.add(i);
             }
         }
-        
-        queue.add(S);
+
+        queue.add(source);
         while (!queue.isEmpty()) {
             // exhaust each level before exploring next level
             int len = queue.size();
@@ -51,19 +51,19 @@ class Solution {
             for (int i = 0; i < len; i++) {
                 Integer curStop = queue.poll();
                 List<Integer> buses = map.get(curStop);
-                for (int bus: buses) {
+                for (int bus : buses) {
                     if (visited.contains(bus))
                         continue;
                     visited.add(bus);
                     int[] nextStops = routes[bus];
-                    for (int nextStop: nextStops) {
-                        if (nextStop == T)
+                    for (int nextStop : nextStops) {
+                        if (nextStop == target)
                             return count;
                         else
                             queue.add(nextStop);
                     }
                 }
-            }     
+            }
         }
         return -1;
     }
