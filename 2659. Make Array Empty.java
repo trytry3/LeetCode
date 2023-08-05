@@ -39,7 +39,9 @@ Constraints:
 All values in nums are distinct.
 */
 
-/*
+
+class Solution {
+ /*
 example [1,4,5,2,8,7,6,3], where n = size of array = 8
 we split the process of removing smallest elements into 4 passes:
 remove [1,2,3]
@@ -57,7 +59,6 @@ We want to remove [4,5,6] from the remaining array, we need to remove 4, remove 
 move 7 to the back, remove 6. And this pass takes 5 operations, which is equal to the size of the remaining array.
 This is why res += n - i. (since n - i is the size of the remaining array)
 */
-class Solution {
     public long countOperationsToEmptyArray(int[] nums) {
         long n = nums.length;
         Map<Integer, Integer> pos = new HashMap<>();
