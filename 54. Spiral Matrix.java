@@ -28,6 +28,7 @@ class Solution {
         int rows = matrix.length, cols = matrix[0].length;
         boolean[][] seen = new boolean[rows][cols];
         // (dirsR[i], dirsC[i]) represents a direction, e.g. (1, 0) is one row down
+        // represents: right, down, left, up
         int[] dirsR = {0, 1, 0, -1};
         int[] dirsC = {1, 0, -1, 0};
         int row = 0, col = 0, d = 0;
