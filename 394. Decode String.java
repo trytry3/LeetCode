@@ -52,7 +52,6 @@ class Solution {
             } else {
                 curStr += c;
             }
-
         }
         return curStr;
     }
