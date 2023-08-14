@@ -16,31 +16,31 @@ Given word = "ABCB", return false.
 
 // dfs, backtracking
 class Solution {
-    private boolean[][] visited;
-    
     public boolean exist(char[][] board, String word) {
-        visited = new boolean[board.length][board[0].length];    
+        boolean[][] visited = new boolean[board.length][board[0].length];
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
-                if ((word.charAt(0) == board[i][j]) && dfs(board, word, i, j, 0)) {
+                if (word.charAt(0) == board[i][j] && dfs(board, word, i, j, 0, visited)) {
                     return true;
                 }
             }
         }
         return false;
     }
-    
-    private boolean dfs(char[][]board, String word, int i, int j, int indexInWord) {
+
+    private boolean dfs(char[][] board, String word, int i, int j, int indexInWord, boolean[][] visited) {
         if (indexInWord == word.length())
             return true; // because nothing needs to match
-        if (i >= board.length || i < 0 || j >= board[i].length || j < 0 || 
-            board[i][j] != word.charAt(indexInWord) || visited[i][j])
-                return false;
+        if (i >= board.length || i < 0 || j >= board[0].length 
+            || j < 0 || board[i][j] != word.charAt(indexInWord) || visited[i][j])
+            return false;
         // here board[i][j] == word.charAt(indexInWord), search if next char matches
         visited[i][j] = true;
-        if (dfs(board, word, i-1, j, indexInWord+1) || dfs(board, word, i+1, j, indexInWord+1) ||
-            dfs(board, word, i, j-1, indexInWord+1) || dfs(board, word, i, j+1, indexInWord+1))
-                return true;
+        if (dfs(board, word, i - 1, j, indexInWord + 1, visited) || 
+            dfs(board, word, i + 1, j, indexInWord + 1, visited) || 
+            dfs(board, word, i, j - 1, indexInWord + 1, visited) || 
+            dfs(board, word, i, j + 1, indexInWord + 1, visited))
+            return true;
         // next char can't find matched path, backtracking
         visited[i][j] = false;
         return false;
