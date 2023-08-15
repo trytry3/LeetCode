@@ -43,6 +43,33 @@ class Solution {
 }
 
 
+class Solution {
+    public int[][] merge(int[][] intervals) {
+        if (intervals == null || intervals.length == 0)
+            return intervals;
+        List<int[]> res = new ArrayList<>();
+        // sort according to interval's start
+        Arrays.sort(intervals, (i1, i2) -> Integer.compare(i1[0], i2[0]));
+        int curStart = intervals[0][0];
+        int curEnd = intervals[0][1];
+        for (int i = 1; i < intervals.length; i++) {
+            // overlap
+            if (intervals[i][0] <= curEnd) {
+                curEnd = Math.max(curEnd, intervals[i][1]);
+            } else {
+                // add the previous merged interval to res
+                res.add(new int[]{curStart, curEnd});
+                curStart = intervals[i][0];
+                curEnd = intervals[i][1];
+            }
+        }
+        // add the last merged interval
+        res.add(new int[]{curStart, curEnd});
+        return res.toArray(new int[res.size()][]);
+    }
+}
+
+
 // method 2
 class Solution {
     public List<Interval> merge(List<Interval> intervals) {
