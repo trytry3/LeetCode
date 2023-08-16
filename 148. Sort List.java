@@ -23,13 +23,14 @@ class Solution {
         if (head == null || head.next == null)
             return head;
 
-        // cut the list to two halves
+        // find the middle point
         ListNode prev = null, slow = head, fast = head;
         while (fast != null && fast.next != null) {
             prev = slow;
             slow = slow.next;
             fast = fast.next.next;
         }
+        // break the list to two halves
         prev.next = null;
 
         // sort each half
