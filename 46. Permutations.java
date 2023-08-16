@@ -30,6 +30,7 @@ class Solution {
             if (tempList.contains(nums[i]))
                 continue;
             tempList.add(nums[i]);
+            // this step won't change tempList size, since copy is passed to dfs
             dfs(res, tempList, nums);
             // backtrack
             tempList.remove(tempList.size() - 1);
