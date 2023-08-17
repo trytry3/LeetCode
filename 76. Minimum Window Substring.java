@@ -12,13 +12,13 @@ If there is such window, you are guaranteed that there will always be only one u
 // two pointers
 // template for LeetCode substring search problem
 class Solution {
-    public String minWindow(String str, String pat) {
-        if (str.length() < pat.length())
+    public String minWindow(String s, String t) {
+        if (s.length() < t.length())
             return "";
         int minWindowLen = Integer.MAX_VALUE;
         // store leftover char frequency when matching `pat` in `str`
         Map<Character, Integer> map = new HashMap<>();
-        for (char c : pat.toCharArray()) {
+        for (char c : t.toCharArray()) {
             map.put(c, map.getOrDefault(c, 0) + 1);
         }
         // store unmatched char counts
@@ -27,8 +27,8 @@ class Solution {
         int start = 0, end = 0;
         // store the min matched window starting position
         int head = 0;
-        while (end < str.length()) {
-            char e = str.charAt(end);
+        while (end < s.length()) {
+            char e = s.charAt(end);
             if (map.containsKey(e)) {
                 map.put(e, map.get(e) - 1);
                 if (map.get(e) == 0)
@@ -41,16 +41,16 @@ class Solution {
                     minWindowLen = end - start;
                     head = start;
                 }
-                char s = str.charAt(start);
-                if (map.containsKey(s)) {
-                    map.put(s, map.get(s) + 1);
+                char c = s.charAt(start);
+                if (map.containsKey(c)) {
+                    map.put(c, map.get(c) + 1);
                     // due to duplicate chars, map can have negative value
-                    if (map.get(s) > 0)
+                    if (map.get(c) > 0)
                         unMatchedCharCount++;
                 }
                 start++;
             }
         }
-        return minWindowLen == Integer.MAX_VALUE ? "" : str.substring(head, head + minWindowLen);
+        return minWindowLen == Integer.MAX_VALUE ? "" : s.substring(head, head + minWindowLen);
     }
 }
